@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var array = [] //array that will contain the number values of the letters in the word
+        var wordagain = [] //array that will contain the ordered values when they are restored to their letter form
+        var word = "pneumonoultramicroscopicsilicovolcanoconiosis"
+        for (i = 0; i < 45; i++) {
+            var n = word.charCodeAt(i) - 96  //converts each letter to the number of its place in the alphabet
+            array.push(n)
+        }
+        console.log(array)
+
+        function bubbleMethod(arr) {
+            for (let i = arr.length - 1; i > 0; i--) { //loops through the word starting at the end
+                for (let j = 0; j < i; j++) { //loops through the word starting at the beginning
+                    if (arr[j] > arr[j + 1]) {
+                        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]] //swap the positions of arr[j] and arr[j+1]
+                    }
+                }
+            }
+            return arr
+        }
+        var Bubbled = bubbleMethod(array)
+        console.log(Bubbled) //array of numbers in an array
+
+        for (k = 0; k < Bubbled.length; k++) {
+            var l = String.fromCharCode(Bubbled[k] + 96)
+            wordagain.push(l)
+        }
+        console.log(wordagain.join("")) //letters in order as a word - output = aacccccceiiiiiilllmmnnnnooooooooopprrsssstuuv
+    </script>
+</body>
+
+</html>

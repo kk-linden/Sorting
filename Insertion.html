@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var array = [] //array that will contain the number values of the letters in the word
+        var wordagain = [] //array that will contain the ordered values when they are restored to their letter form
+        var word = "pneumonoultramicroscopicsilicovolcanoconiosis"
+        for (i = 0; i < 45; i++) {
+            var n = word.charCodeAt(i) - 96  //converts each letter to the number of its place in the alphabet
+            array.push(n)
+        }
+        console.log(array)
+        
+        function insertionMethod(arr) {
+            for (let i = 1; i<45; i++){ //first element is sorted by default, so start at the second element
+                let current = array[i] // the current belongs to the unsorted array
+                let j = i-1 //the element before current belongs to the sorted array
+                while(j>-1 && current < arr[j]){ 
+                    arr[j+1]=arr[j] //shifts individual elements to the right to make space for the current to be inserted
+                    j--
+                }
+                arr[j+1] = current //inserts current at correct spot
+            }
+            return arr
+        }
+        insertionMethod(array);
+        console.log(array);
+
+        for (c = 0; c < array.length; c++) {
+            var d = String.fromCharCode(array[c] + 96)
+            wordagain.push(d)
+        }
+        console.log(wordagain.join("")) //letters in order as a word - output = aacccccceiiiiiilllmmnnnnooooooooopprrsssstuuv
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var array = [] //array that will contain the number values of the letters in the word
+        var wordagain = [] //array that will contain the ordered values when they are restored to their letter form
+        var word = "pneumonoultramicroscopicsilicovolcanoconiosis"
+        for (i = 0; i < 45; i++) {
+            var n = word.charCodeAt(i) - 96  //converts each letter to the number of its place in the alphabet
+            array.push(n)
+        }
+        console.log(array)
+        function merge(left, right) {
+            let sortedArr = []; // the sorted elements will go here
+
+            while (left.length && right.length) {
+                if (left[0] < right[0]) {
+                    sortedArr.push(left.shift());
+                } else {
+                    sortedArr.push(right.shift());
+                }//the smallest element goes into the the array
+            }
+            let combinedArrayOne = sortedArr.concat(left)
+            let combinedArray = combinedArrayOne.concat(right)
+            return combinedArray;
+        }
+
+        function mergeMethod(arr) {
+            const half = arr.length / 2;
+            if (arr.length <= 1) {
+                return arr;
+            }
+            const left = arr.splice(0, half);
+            const right = arr;
+            return merge(mergeMethod(left), mergeMethod(right));
+        }
+        var Merged = mergeMethod(array)
+        console.log(Merged)
+
+        for (a= 0; a< Merged.length; a++) {
+            var q = String.fromCharCode(Merged[a] + 96)
+            wordagain.push(q)
+        }
+        console.log(wordagain.join("")) //letters in order as a word - output = aacccccceiiiiiilllmmnnnnooooooooopprrsssstuuv
+
+
+    </script>
+</body>
+
+</html>
