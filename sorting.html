@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var array = [] //array that will contain the number values of the letters in the word
+        var wordagain = [] //array that will contain the ordered values when they are restored to their letter form
+        var word = "pneumonoultramicroscopicsilicovolcanoconiosis"
+        for (i = 0; i < 45; i++) {
+            var n = word.charCodeAt(i) - 96  //converts each letter to the number of its place in the alphabet
+            array.push(n)
+        }
+        console.log(array)
+
+        // function bubbleMethod(arr) {
+        //     for (let i = arr.length - 1; i > 0; i--) { //loops through the word starting at the end
+        //         for (let j = 0; j < i; j++) { //loops through the word starting at the beginning
+        //             if (arr[j] > arr[j + 1]) {
+        //                 [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]] //swap the positions of arr[j] and arr[j+1]
+        //             }
+        //         }
+        //     }
+        //     return arr
+        // }
+        // var Bubbled = bubbleMethod(array)
+        // console.log(Bubbled) //array of numbers in an array
+
+        // for (k = 0; k < Bubbled.length; k++) {
+        //     var l = String.fromCharCode(Bubbled[k] + 96)
+        //     wordagain.push(l)
+        // }
+        // console.log(wordagain.join("")) //letters in order as a word - output = aacccccceiiiiiilllmmnnnnooooooooopprrsssstuuv
+
+
+
+
+
+
+
+        // function insertionMethod(arr) {
+        //     for (let i = 1; i<45; i++){ //first element is sorted by default, so start at the second element
+        //         let current = array[i] // the current belongs to the unsorted array
+        //         let j = i-1 //the element before current belongs to the sorted array
+        //         while(j>-1 && current < arr[j]){ 
+        //             arr[j+1]=arr[j] //shifts individual elements to the right to make space for the current to be inserted
+        //             j--
+        //         }
+        //         arr[j+1] = current //inserts current at correct spot
+        //     }
+        //     return arr
+        // }
+        // insertionMethod(array);
+        // console.log(array);
+
+        // for (c = 0; c < array.length; c++) {
+        //     var d = String.fromCharCode(array[c] + 96)
+        //     wordagain.push(d)
+        // }
+        // console.log(wordagain.join("")) //letters in order as a word - output = aacccccceiiiiiilllmmnnnnooooooooopprrsssstuuv
+
+
+
+
+
+
+
+        function merge(left, right) {
+            let sortedArr = []; // the sorted elements will go here
+
+            while (left.length && right.length) {
+                if (left[0] < right[0]) {
+                    sortedArr.push(left.shift());
+                } else {
+                    sortedArr.push(right.shift());
+                }//the smallest element goes into the the array
+            }
+            let combinedArrayOne = sortedArr.concat(left)
+            let combinedArray = combinedArrayOne.concat(right)
+            return combinedArray;
+        }
+
+        function mergeMethod(arr) {
+            const half = arr.length / 2;
+            if (arr.length <= 1) {
+                return arr;
+            }
+            const left = arr.splice(0, half);
+            const right = arr;
+            return merge(mergeMethod(left), mergeMethod(right));
+        }
+        var Merged = mergeMethod(array)
+        console.log(Merged)
+
+        for (a= 0; a< Merged.length; a++) {
+            var q = String.fromCharCode(Merged[a] + 96)
+            wordagain.push(q)
+        }
+        console.log(wordagain.join("")) //letters in order as a word - output = aacccccceiiiiiilllmmnnnnooooooooopprrsssstuuv
+
+
+    </script>
+
+    <!-- Pneumonoultramicroscopicsilicovolcanoconiosis -->
+</body>
+
+</html>
+
+<!-- 
+
+o Sort the letters using 3 sorting techniques: [30 A]
+- Merge
+o Compare and contrast the 3 different sorting techniques [10 T]
+o Explain big O notation, time, and space complexity [10 C]
+o Provide the time and space complexity for Bubble, insertion, and merge [10 C]
+o Add Github Link -->
